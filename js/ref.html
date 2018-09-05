@@ -1,0 +1,160 @@
+ <?php
+$currentPage = 'map';?>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Leaflet Everything!</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
+
+    <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
+
+    <link href='//api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet'>
+
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <script src="./js/leaflet-measure-path.js"></script>
+
+    <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet'>
+
+    <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet'>
+
+    <script type="text/javascript" src="MovingMarker.js"></script>
+
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:static; width:80%; height:80%;}
+        table {
+            border-collapse : collapse;
+            border : 2px black solid;
+            font : 12px sans-serif;
+        }
+        td {
+            border : 1px black solid;
+            padding : 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Interactive Map </h1>
+    <a href = index.php>Home</a>
+    <br>
+    <a href = map2.php>map2</a>
+    <br>
+    <a href = leaflet.html>clicky map</a>
+    <div id='map'></div>
+    <script>
+        var map = L.mapbox.map('map', 'faraday2.hb90naie', {
+        detectRetina: true,
+        zoomControl: true,
+        //take away the zoom controls on the top left
+        infoControl: false,
+        maxZoom: 15
+        });
+        map.setView([-34.0153, 93.1673], 4);
+
+        function displayCSV(){
+            d3.text("./data/data2.csv", function(data){
+                var parsedCSV = d3.csv.parseRows(data);
+
+                var container = d3.select("body")
+                .append("table")
+
+                .selectAll("tr")
+                    .data(parsedCSV).enter()
+                    .append("tr")
+                .selectAll("td")
+                    .data(function(d) {return d;}).enter()
+                    .append("td")
+                    .text(function(d) {return d;});
+            });
+        }
+
+        function eachLayer(layer) {
+            var feature = layer.toGeoJSON();
+            //if (feature.properties && feature.properties.data.title) {
+                //layer.bindPopup("Name - " + feature.properties.title);
+            //}
+        }
+
+        var moderateIcon = L.icon({
+            iconUrl : './img/moderate.png',
+            iconSize : [25, 25]
+        })
+
+        var highIcon = L.icon({
+            iconUrl : './img/high.png',
+            iconSize : [25, 25],
+
+        })
+
+        var extremeIcon = L.icon({
+            iconUrl : './img/extreme.png',
+            iconSize : [25, 25]
+        })
+
+        var trainIcon = L.icon({
+            iconUrl : './img/train.png',
+            iconSize : [25, 25]
+        })
+
+        var latlngs = [];
+        var points = omnivore.csv('./data/data2.csv')
+        .on('ready', function() {
+            map.fitBounds(points.getBounds());
+
+            points.eachLayer(function(layer){
+                if(layer.feature.properties.priority == 'high'){
+                    layer.setIcon(highIcon);
+                }
+                else if(layer.feature.properties.priority == 'extreme'){
+                    layer.setIcon(extremeIcon);
+                }
+                else if(layer.feature.properties.priority == 'moderate'){
+                    layer.setIcon(moderateIcon);
+                }
+
+                layer.bindPopup("Type of fault: " +
+                 layer.feature.properties.type + 
+                 "<br> Priority :" + 
+                 layer.feature.properties.priority + 
+                 "<br>" + 
+                 layer.feature.geometry.coordinates + 
+                 "<br>" + 
+                 layer.feature.properties.meme + 
+                 "-" + 
+                 layer.feature.properties.time + 
+                 "<br>Time from previous marker:" + 
+                 layer.feature.properties.timeDif + 
+                 "<br>Total time(end marker): " + 
+                 layer.feature.properties.totalTime +
+                 "<br>" +
+                 "<a href=" + 
+                 layer.feature.properties.link +
+                 ">Click here for more information</a>" );
+
+                latlngs.push(layer.getLatLng());
+            });
+            L.polyline(latlngs, {color: "blue", 
+                showMeasurements : true, 
+                measurementOptions :{minDistance : 0}
+            }).addTo(map);
+
+            var myMovingMarker = L.Marker.movingMarker(latlngs, 20000, {autostart : true, loop : true, icon : trainIcon}).addTo(map);
+
+            var markers = L.markerClusterGroup({
+                showCoverageOnHover: false,
+                maxClusterRadius: 25
+            });
+            markers.addLayer(points);
+            //window.alert(markers.length);
+            map.addLayer(markers);
+            points.eachLayer(eachLayer);
+
+        }).addTo(map);
+    </script>

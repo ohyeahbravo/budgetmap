@@ -1,0 +1,341 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Transportation",
+        "Date": "18-08-24 11:20",
+        "Title": "Flight",
+        "Amount": 68,
+        "Currency": "EUR",
+        "Location": "Frankfurt Airport",
+        "Payment": "Card",
+        "Memo": "Ryanair"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.562188,
+          50.037938
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Transportation",
+        "Date": "18-08-24 15:31",
+        "Title": "Metro",
+        "Amount": 1.95,
+        "Currency": "EUR",
+        "Location": "Lisbon Airport",
+        "Payment": "Card",
+        "Memo": "Aeroporto - Alameda (Vm: Sao Sebastiao) - Baixa-Chiado (Vd: Cais do Sodre)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.128563,
+          38.769313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Accommodation",
+        "Date": "18-08-24 16:46",
+        "Title": "Hostel",
+        "Amount": 40,
+        "Currency": "EUR",
+        "Location": "Host'Bell Rooms&Suites",
+        "Payment": "Card",
+        "Memo": "12-Bed Dormitory"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.143438,
+          38.711688
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Food",
+        "Date": "18-08-24 17:04",
+        "Title": "Dinner",
+        "Amount": 8.9,
+        "Currency": "EUR",
+        "Location": "Café Beira Gare",
+        "Payment": "Cash",
+        "Memo": "Pork Sandwich"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.140437,
+          38.714313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Sightseeing",
+        "Date": "18-08-24 18:22",
+        "Title": "Lisboa Card",
+        "Amount": 19,
+        "Currency": "EUR",
+        "Location": "Palácio Foz",
+        "Payment": "Card",
+        "Memo": "24-Hour Valid"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.142438,
+          38.715813
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Food",
+        "Date": "18-08-24 20:18",
+        "Title": "Egg Tart",
+        "Amount": 1.2,
+        "Currency": "EUR",
+        "Location": "Pasteis de Belém",
+        "Payment": "Cash",
+        "Memo": "Take-away"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.203188,
+          38.697563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Food",
+        "Date": "18-08-25 11:03",
+        "Title": "Brunch",
+        "Amount": 15,
+        "Currency": "EUR",
+        "Location": "Cascais Remo",
+        "Payment": "Cash",
+        "Memo": "Veal Scallops & Coffee & 1 Euro Tip"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.145063,
+          38.717313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Sightseeing",
+        "Date": "18-08-25 13:17",
+        "Title": "Tram 28",
+        "Amount": 0,
+        "Currency": "EUR",
+        "Location": "Martim Moniz",
+        "Payment": "Etc",
+        "Memo": "Martim Moniz – Graca – Portas de Sol – Se Cathedral – Rua Conceição (southern Baixa) – Chiado – Sao Bento – Estrela - Campo Ourique"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.135688,
+          38.716812
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Food",
+        "Date": "18-08-25 18:00",
+        "Title": "Dinner",
+        "Amount": 13.9,
+        "Currency": "EUR",
+        "Location": "Time Out Market",
+        "Payment": "Card",
+        "Memo": "O Prego Da Peixaria"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.145937,
+          38.706688
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Transportation",
+        "Date": "18-08-25 20:12",
+        "Title": "Bus",
+        "Amount": 1.5,
+        "Currency": "EUR",
+        "Location": "Cais Sodré",
+        "Payment": "Cash",
+        "Memo": "Bus 760"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.145063,
+          38.706312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Food",
+        "Date": "18-08-26 8:30",
+        "Title": "Coffee",
+        "Amount": 3.1,
+        "Currency": "EUR",
+        "Location": "Manteigaria",
+        "Payment": "Cash",
+        "Memo": "Espresso & One Tart"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.144063,
+          38.710812
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Transportation",
+        "Date": "18-08-26 10:05",
+        "Title": "Train",
+        "Amount": 9.5,
+        "Currency": "EUR",
+        "Location": "Lisboa - Rossio",
+        "Payment": "Card",
+        "Memo": "Sintra One Day Pass"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.140938,
+          38.714437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Food",
+        "Date": "18-08-26 12:36",
+        "Title": "Lunch",
+        "Amount": 21,
+        "Currency": "EUR",
+        "Location": "Romaria de Baco",
+        "Payment": "Caash",
+        "Memo": "Secretos de Porco Preto & 2 Beer"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.391563,
+          38.796437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Sightseeing",
+        "Date": "18-08-26 14:00",
+        "Title": "Quinta Da Regaleria",
+        "Amount": 6,
+        "Currency": "EUR",
+        "Location": "Quinta da Regaleira",
+        "Payment": "Card",
+        "Memo": "spent 3 hours"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.396063,
+          38.796313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Transportation",
+        "Date": "18-08-26 18:30",
+        "Title": "Metro",
+        "Amount": 1.95,
+        "Currency": "EUR",
+        "Location": "Baixa-Chiado",
+        "Payment": "Cash",
+        "Memo": "Metro to Airport"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.139063,
+          38.710688
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Trip": "Lisbon18",
+        "Category": "Food",
+        "Date": "18-08-26 20:00",
+        "Title": "Dinner",
+        "Amount": 7.8,
+        "Currency": "EUR",
+        "Location": "McDonald's",
+        "Payment": "Card",
+        "Memo": "Bacon Smokehouse Burger Set"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.130438,
+          38.773438
+        ]
+      }
+    }
+  ]
+}

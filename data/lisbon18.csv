@@ -1,0 +1,17 @@
+Trip,Category,Time,Title,Amount,Currency,Location,lat,lon,Payment,Memo
+Lisbon18,Transportation,18-08-24 11:20,Flight,68,EUR,Frankfurt Airport,50.037938,8.562188,Card,Ryanair
+Lisbon18,Transportation,18-08-24 15:31,Metro,1.95,EUR,Lisbon Airport,38.769313,-9.128563,Card,Aeroporto - Alameda (Vm: Sao Sebastiao) - Baixa-Chiado (Vd: Cais do Sodre)
+Lisbon18,Accommodation,18-08-24 16:46,Hostel,40,EUR,Host'Bell Rooms&Suites,38.711688,-9.143438,Card,12-Bed Dormitory
+Lisbon18,Food,18-08-24 17:04,Dinner,8.9,EUR,Café Beira Gare,38.714313,-9.140437,Cash,Pork Sandwich
+Lisbon18,Sightseeing,18-08-24 18:22,Lisboa Card,19,EUR,Palácio Foz,38.715813,-9.142438,Card,24-Hour Valid
+Lisbon18,Food,18-08-24 20:18,Egg Tart,1.2,EUR,Pasteis de Belém,38.697563,-9.203188,Cash,Take-away
+Lisbon18,Food,18-08-25 11:03,Brunch,15,EUR,Cascais Remo,38.717313,-9.145063,Cash,Veal Scallops & Coffee & 1 Euro Tip
+Lisbon18,Sightseeing,18-08-25 13:17,Tram 28,0,EUR,Martim Moniz,38.716812,-9.135688,Etc,Martim Moniz – Graca – Portas de Sol – Se Cathedral – Rua Conceição (southern Baixa) – Chiado – Sao Bento – Estrela - Campo Ourique
+Lisbon18,Food,18-08-25 18:00,Dinner,13.9,EUR,Time Out Market,38.706688,-9.145937,Card,O Prego Da Peixaria
+Lisbon18,Transportation,18-08-25 20:12,Bus,1.5,EUR,Cais Sodré,38.706312,-9.145063,Cash,Bus 760
+Lisbon18,Food,18-08-26 8:30,Coffee,3.1,EUR,Manteigaria,38.710812,-9.144063,Cash,Espresso & One Tart
+Lisbon18,Transportation,18-08-26 10:05,Train,9.5,EUR,Lisboa - Rossio,38.714437,-9.140938,Card,Sintra One Day Pass
+Lisbon18,Food,18-08-26 12:36,Lunch,21,EUR,Romaria de Baco,38.796437,-9.391563,Caash,Secretos de Porco Preto & 2 Beer
+Lisbon18,Sightseeing,18-08-26 14:00,Quinta Da Regaleria,6,EUR,Quinta da Regaleira,38.796313,-9.396063,Card,spent 3 hours
+Lisbon18,Transportation,18-08-26 18:30,Metro,1.95,EUR,Baixa-Chiado,38.710688,-9.139063,Cash,Metro to Airport
+Lisbon18,Food,18-08-26 20:00,Dinner,7.8,EUR,McDonald's,38.773438,-9.130438,Card,Bacon Smokehouse Burger Set
