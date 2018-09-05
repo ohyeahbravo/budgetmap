@@ -21,8 +21,17 @@
         &nbsp Trip to Lisbon 2018
     </h1>
 
-    <div id="map" style="max-width: 700px; height: 450px; margin:0 auto;"></div>
+    <div id="map" style="max-width: 1250px; height: 600px; margin:0 auto;"></div>
     <script type="text/javascript" src="js/script.js"> </script>
+
+    <div class='map-overlay top'>
+            <h2>Days of the trip</h2>
+            <label id='day'></label>
+            <input id='slider' type='range' min='0' max='16' step='1' value='0' />
+    </div>
+    
+    <script src='//d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
     <script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoib2h5ZWFoYnJhdm8iLCJhIjoiY2psbXNqZmc0MTdhcDNycGIyenp6YTM5dSJ9.Zo0fukXCo-JW__NFIBQ7rw';
        
@@ -45,7 +54,7 @@
             });
             
             map.addLayer({
-                'id':'points',
+                'id':'marker',
                 'type': 'circle',
                 'source': "lisbon18",
                 'paint': {
