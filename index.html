@@ -22,14 +22,14 @@
     </h1>
 
     <div id="map" style="max-width: 1250px; height: 600px; margin:10px auto;"></div>
-    <script type="text/javascript" src="js/script.js"> </script>
-
     <div class='map-overlay top'>
-            <h2>Days of the trip</h2>
-            <label id='day'></label>
-            <input id='slider' type='range' min='0' max='16' step='1' value='0' />
+        <h2>Days of the trip</h2>
+        <label id='day'></label>
+        <input id='slider' type='range' min='0' max='17' step='1' value='0' />
     </div>
-
+    
+    <script type="text/javascript" src="js/script.js"> </script>
+    <script src="https://d3js.org/d3.v5.js"></script>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoib2h5ZWFoYnJhdm8iLCJhIjoiY2psbXNqZmc0MTdhcDNycGIyenp6YTM5dSJ9.Zo0fukXCo-JW__NFIBQ7rw';
        
@@ -44,6 +44,12 @@
         var nav = new mapboxgl.NavigationControl();
         map.addControl(nav, 'bottom-right');
         
+        function showSpending(inputString) {
+
+            // Set the label to the spending title and the amount
+            document.getElementById('day').textContent = inputString;
+        }
+
         // Add Points
         map.on('load', function() {
             map.addSource("lisbon18", {
@@ -76,7 +82,6 @@
                     ]
                 }
             });
-        });
         
         // add info box
         // https://www.mapbox.com/help/gl-dds-map-tutorial/#result-3
@@ -117,7 +122,23 @@
             var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });
             map.getCanvas().style.cursor = features.length ? 'pointer' : '';
         });
+
+        
+        document.getElementById('slider').addEventListener('input', function(e) {
+            var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });    
+            
+            if (!features.length) {
+                return;
+            }
+
+            var feature = features[0];
+            
+            var spending = feature.properties['Title'];
+            showSpending(spending);
+        });
+    });
         
     </script>
+
     </body>
-    </html>
+</html>
