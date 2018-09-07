@@ -4,6 +4,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 1,
+        "City": "Frankfurt",
         "Trip": "Lisbon18",
         "Category": "Transportation",
         "Date": "18-08-24 11:20",
@@ -27,6 +29,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 2,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Transportation",
         "Date": "18-08-24 15:31",
@@ -50,6 +54,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 3,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Accommodation",
         "Date": "18-08-24 16:46",
@@ -73,6 +79,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 4,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Food",
         "Date": "18-08-24 17:04",
@@ -96,6 +104,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 5,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Sightseeing",
         "Date": "18-08-24 18:22",
@@ -119,6 +129,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 6,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Food",
         "Date": "18-08-24 20:18",
@@ -142,6 +154,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 7,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Food",
         "Date": "18-08-25 11:03",
@@ -165,6 +179,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 8,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Sightseeing",
         "Date": "18-08-25 13:17",
@@ -178,6 +194,7 @@
         "Memo": "Martim Moniz – Graca – Portas de Sol – Se Cathedral – Rua Conceição (southern Baixa) – Chiado – Sao Bento – Estrela - Campo Ourique"
       },
       "geometry": {
+        "index": 9,
         "type": "Point",
         "coordinates": [
           -9.135688,
@@ -188,6 +205,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 9,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Food",
         "Date": "18-08-25 18:00",
@@ -211,6 +230,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 10,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Transportation",
         "Date": "18-08-25 20:12",
@@ -234,6 +255,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 11,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Food",
         "Date": "18-08-26 8:30",
@@ -257,6 +280,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 12,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Transportation",
         "Date": "18-08-26 10:05",
@@ -280,6 +305,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 13,
+        "City": "Sintra",
         "Trip": "Lisbon18",
         "Category": "Food",
         "Date": "18-08-26 12:36",
@@ -303,6 +330,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 14,
+        "City": "Sintra",
         "Trip": "Lisbon18",
         "Category": "Sightseeing",
         "Date": "18-08-26 14:00",
@@ -326,6 +355,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 15,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Transportation",
         "Date": "18-08-26 18:30",
@@ -349,6 +380,8 @@
     {
       "type": "Feature",
       "properties": {
+        "index": 16,
+        "City": "Lisbon",
         "Trip": "Lisbon18",
         "Category": "Food",
         "Date": "18-08-26 20:00",

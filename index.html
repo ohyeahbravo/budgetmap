@@ -34,7 +34,7 @@
     
     <div class='map-overlay top'>
         <label id = 'spending'> Spending </label>
-        <input id='slider' type='range' min='0' max='17' step='1' value='0' />
+        <input id='slider' type='range' min='0' max='16' step='1' value='0' />
     </div>
     
     <script type="text/javascript" src="js/script.js"> </script>
@@ -50,8 +50,8 @@
         var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/light-v9',
-            center: [-9.138307571411133, 38.71518391681351], // starting position
-            zoom: 13 // starting zoom
+            center: [1.2744140625, 46.92025531537451],// starting position
+            zoom: 4 // starting zoom
         });
 
         // Add zoom and rotation controls to the map.
@@ -63,6 +63,18 @@
             map.addSource("lisbon18", {
                 "type": "geojson",
                 "data": geojsondata
+            });
+
+            map.addLayer({
+                'id':'currentPos',
+                'type': 'symbol',
+                'source': 'lisbon18',
+                'layout': {
+                    'icon-image': 'marker-15',
+                    'icon-allow-overlap': true,
+                    'icon-offset': [0, 0]
+                },
+                'filter': ["==", "index", 0]
             });
 
             map.addLayer({
@@ -88,7 +100,7 @@
                         /* other */ '#DFDCE3'    // grey
                     ]
                 }
-            });
+            }, 'currentPos');
 
         // add info box
         // https://www.mapbox.com/help/gl-dds-map-tutorial/#result-3
@@ -134,17 +146,25 @@
         var slider = document.getElementById('slider');
         var sliderValue = document.getElementById('spending');
 
+        
         slider.addEventListener('input', function(e) {
-            var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });    
             
+            var step = parseInt(e.target.value);
+
+            //map.setFilter('points', ['==']);
+            var features = map.queryRenderedFeatures({ layers: ['points'] });    
             if (!features.length) {
                 return;
             }
-
             var feature = features[0];
+
+            map.setFilter("currentPos", ["==", "index", step]);
+            
+            //filter = ['==', ['number', ['get', 'index']], 'placeholer'];
             
             //map.setPaintProperty('chicago', 'raster-opacity', parseInt(e.target.value, 10) / 100);
 
+            
             sliderValue.textContent = feature.properties['Title'];
         });
     });
