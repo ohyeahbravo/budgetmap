@@ -14,6 +14,15 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu|Raleway|Titillium+Web|Caveat" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+    integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+    crossorigin=""></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 </head>
 <body>
     <h1>
@@ -22,17 +31,22 @@
     </h1>
 
     <div id="map" style="max-width: 1250px; height: 600px; margin:10px auto;"></div>
+    
     <div class='map-overlay top'>
-        <h2>Days of the trip</h2>
-        <label id='day'></label>
+        <label id = 'spending'> Spending </label>
         <input id='slider' type='range' min='0' max='17' step='1' value='0' />
     </div>
     
     <script type="text/javascript" src="js/script.js"> </script>
     <script src="https://d3js.org/d3.v5.js"></script>
+    
     <script>
+
+        // get the geoJSON data
+        var geojsondata;
+        $.getJSON("https://dl.dropbox.com/s/axgc96qdg5g6rvp/lisbon18.geojson?dl=0", function(data) { geojsondata = data; });
+
         mapboxgl.accessToken = 'pk.eyJ1Ijoib2h5ZWFoYnJhdm8iLCJhIjoiY2psbXNqZmc0MTdhcDNycGIyenp6YTM5dSJ9.Zo0fukXCo-JW__NFIBQ7rw';
-       
         var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/light-v9',
@@ -43,20 +57,14 @@
         // Add zoom and rotation controls to the map.
         var nav = new mapboxgl.NavigationControl();
         map.addControl(nav, 'bottom-right');
-        
-        function showSpending(inputString) {
-
-            // Set the label to the spending title and the amount
-            document.getElementById('day').textContent = inputString;
-        }
 
         // Add Points
         map.on('load', function() {
             map.addSource("lisbon18", {
                 "type": "geojson",
-                "data": "https://dl.dropbox.com/s/axgc96qdg5g6rvp/lisbon18.geojson?dl=0"
+                "data": geojsondata
             });
-            
+
             map.addLayer({
                 'id':'points',
                 'type': 'circle',
@@ -69,7 +77,6 @@
                         'base': 1.7,
                         'stops': [[5, 3], [22, 160]]
                     },
-
                     // circles are colored according to the categories
                     'circle-color': [
                         'match',
@@ -82,7 +89,7 @@
                     ]
                 }
             });
-        
+
         // add info box
         // https://www.mapbox.com/help/gl-dds-map-tutorial/#result-3
         map.on('click', function(e) {
@@ -115,6 +122,7 @@
                     + '<div class="memo">' + feature.properties['Memo'] + '</div>'
                 + '</div>'
             ).addTo(map);
+        
         });
 
         // change cursor when you hover over the point
@@ -123,8 +131,10 @@
             map.getCanvas().style.cursor = features.length ? 'pointer' : '';
         });
 
-        
-        document.getElementById('slider').addEventListener('input', function(e) {
+        var slider = document.getElementById('slider');
+        var sliderValue = document.getElementById('spending');
+
+        slider.addEventListener('input', function(e) {
             var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });    
             
             if (!features.length) {
@@ -133,8 +143,9 @@
 
             var feature = features[0];
             
-            var spending = feature.properties['Title'];
-            showSpending(spending);
+            //map.setPaintProperty('chicago', 'raster-opacity', parseInt(e.target.value, 10) / 100);
+
+            sliderValue.textContent = feature.properties['Title'];
         });
     });
         
