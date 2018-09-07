@@ -23,6 +23,7 @@
     crossorigin=""></script>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 </head>
 <body>
     <h1>
@@ -80,7 +81,7 @@
             map.addLayer({
                 'id':'points',
                 'type': 'circle',
-                'source': "lisbon18",
+                'source': 'lisbon18',
                 'paint': {
                     'circle-stroke-width': 1,
                     'circle-stroke-color': '#fff',
@@ -101,6 +102,31 @@
                     ]
                 }
             }, 'currentPos');
+            
+            // make an array for a route
+            var routeArray = [ [0, 0], [1, 1]];
+            // geojsondata.features.forEach(function(feature) {
+            //     routeArray.push(feature.geometry.coordinates);                    
+            // });
+
+            var linestring = turf.lineString(routeArray);
+
+            map.addLayer({
+                'id':'route',
+                'type':'line',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'source': {
+                    'type': 'geojson',
+                    'data': linestring
+                },
+                'paint':{
+                    'line-width': 3,
+                    'line-color': '#96858f',
+                    'line-opacity': 0.3
+                }
+            }, 'points');
 
         // add info box
         // https://www.mapbox.com/help/gl-dds-map-tutorial/#result-3
@@ -152,20 +178,26 @@
             var step = parseInt(e.target.value);
 
             //map.setFilter('points', ['==']);
-            var features = map.queryRenderedFeatures({ layers: ['points'] });    
-            if (!features.length) {
-                return;
-            }
-            var feature = features[0];
+            // var features = map.queryRenderedFeatures({ layers: ['points'] });    
+            // if (!features.length) {
+            //     return;
+            // }
+            // var feature = features[0];
 
+            // move the current marker on the map
             map.setFilter("currentPos", ["==", "index", step]);
             
-            //filter = ['==', ['number', ['get', 'index']], 'placeholer'];
-            
-            //map.setPaintProperty('chicago', 'raster-opacity', parseInt(e.target.value, 10) / 100);
 
-            
-            sliderValue.textContent = feature.properties['Title'];
+            // show the route progress
+            linestring.geometry.coordinates = [];  // initailize the route
+            geojsondata.features.forEach(function(feature) {
+                if(feature.properties['index'] <= step) {
+                    linestring.geometry.coordinates.push(feature.geometry.coordinates);
+                }
+            });
+            map.getSource('route').setData(linestring);
+            map.setLayoutProperty('route', 'visibility', 'visible');
+            //sliderValue.textContent = feature.properties['Title'];
         });
     });
         
