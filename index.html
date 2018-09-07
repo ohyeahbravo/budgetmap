@@ -145,7 +145,6 @@
             else if(feature.properties['Payment'] == "Cash")
                 payment = "fas fa-money-bill"
 
-
             var popup = new mapboxgl.Popup()
             .setLngLat(feature.geometry.coordinates)
             .setHTML(
@@ -186,7 +185,8 @@
 
             // move the current marker on the map
             map.setFilter("currentPos", ["==", "index", step]);
-            
+                
+            var match;
 
             // show the route progress
             linestring.geometry.coordinates = [];  // initailize the route
@@ -194,10 +194,31 @@
                 if(feature.properties['index'] <= step) {
                     linestring.geometry.coordinates.push(feature.geometry.coordinates);
                 }
+                if(feature.properties['index'] == step) {
+                    match = feature;
+                }
             });
             map.getSource('route').setData(linestring);
             map.setLayoutProperty('route', 'visibility', 'visible');
-            //sliderValue.textContent = feature.properties['Title'];
+            
+            var zoomcenter = match.geometry.coordinates;
+            var zoomlevel = 14;
+            if(step == 0) {
+                zoomcenter = [1.2744140625, 46.92025531537451];
+                zoomlevel = 4;
+            }
+            if(step == 1) {
+                zoomlevel = 7;         
+            } else if (step == 2) {
+                zoomlevel = 12;
+            } else if (step == 13 || step == 14) {
+                zoomcenter = [-9.393793344497679, 38.79629789297362];
+                zoomlevel = 16;
+            } else if (step != 6 && step != 16) {
+                zoomcenter = [-9.138307571411133, 38.714];
+            }
+            map.flyTo({center: zoomcenter, zoom: zoomlevel});
+            sliderValue.textContent = match.properties['Title'];
         });
     });
         
