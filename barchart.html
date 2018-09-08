@@ -37,7 +37,7 @@
     
     <div id="map" style="max-width: 1250px; height: 600px; margin:10px auto;"></div>
     
-    <div id="barChart" style="width: 400px; height: 300px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id="barChart" style="width: 600px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
         
     <div class='map-overlay top'>
         <label id = 'spending'> Spending </label>
@@ -109,6 +109,8 @@
 
 
         var xData = [];
+        var yData = [0,0,0,0];
+        var textData = [0, 0, 0, 0];
         
         geojsondata.features.forEach(function(feature) {
             var string = feature.properties['Category'];
@@ -116,37 +118,72 @@
                 xData.push(feature.properties['Category']);
             }
         });
+        console.log(xData);
 
-        var yData = [];
-        
         geojsondata.features.forEach(function(feature) {
-            yData.push(feature.properties['Amount']);
+            var string = feature.properties['Category'];
+            if(string == 'Transportation') {
+                yData[0] -= feature.properties['Amount'];
+                textData[0] += feature.properties['Amount'];
+            }
+            if(string == 'Accommodation') {
+                yData[1] -= feature.properties['Amount'];
+                textData[1] += feature.properties['Amount'];
+            }
+            if(string == 'Food') {
+                yData[2] -= feature.properties['Amount'];
+                textData[2] += feature.properties['Amount'];
+            }
+            if(string == 'Sightseeing') {
+                yData[3] -= feature.properties['Amount'];
+                textData[3] += feature.properties['Amount'];
+            }
         });
+        console.log(yData);
+        var total = yData[0] + yData[1] + yData[2] + yData[3];
+        console.log(total);
 
-        var chartData = [{
+        var chartData1 = {
             type: 'bar',
+            hoverinfo: 'none',
+            textposition: "outside",
+            text: textData,
+            textfont: {
+                family: 'Caveat', 
+                size: 22,
+                color: '#fff'
+            },
             x: xData,
             y: yData,
             orientation: 'v',
             marker: {
                 color:["#0074D9", '#4ABDAC', '#F7B733', '#FC4A1A'] 
             }
-        }];
+        };
+
+        var chartData2 = {
+            type: 'bar',
+            hoverinfo: 'none',
+            x: xData,
+            y: [total - yData[0], total - yData[1], total - yData[2], total - yData[3]],
+            orientation: 'v',
+            marker: {
+                color:["#d3d3d3", '#d3d3d3', '#d3d3d3', '#d3d3d3'],
+                opacity: 0.2 
+            }
+        };
+
+        var chartData = [chartData1, chartData2]
 
         var layout= {
+            barmode:'stack',
+            showlegend: false,
+            opacity: 0.7,            
             xaxis: {
-                showticklbels: false,
-                showgrid: false,
-                showline: false,
-                color: '#fff'
+                visible: false
             },
             yaxis: {
-                showticklbels: true,
-                tickfont: {
-                    family: 'Old Standard TT, serif',
-                    size: 8,
-                    color: 'black'
-                }
+                visible: false
             }
         };
 
