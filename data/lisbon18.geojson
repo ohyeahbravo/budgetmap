@@ -87,17 +87,17 @@
         "Day": "Aug 24",
         "Time": "5:04 PM",
         "Title": "Dinner",
-        "Amount": 8.9,
+        "Amount": 15.8,
         "Currency": "EUR",
-        "Location": "Café Beira Gare",
+        "Location": "Restaurante Casa do Leão",
         "Payment": "Cash",
-        "Memo": "Pork Sandwich"
+        "Memo": "The perfect view on the hill."
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -9.140437,
-          38.714313
+          -9.134062,
+          38.713438
         ]
       }
     },
@@ -240,15 +240,15 @@
         "Title": "Bus",
         "Amount": 1.5,
         "Currency": "EUR",
-        "Location": "Cais Sodré",
+        "Location": "Terreiro do Paço",
         "Payment": "Cash",
         "Memo": "Bus 760"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -9.145063,
-          38.706312
+          -9.133312,
+          38.707187
         ]
       }
     },
@@ -265,15 +265,15 @@
         "Title": "Coffee",
         "Amount": 3.1,
         "Currency": "EUR",
-        "Location": "Manteigaria",
+        "Location": "the mill",
         "Payment": "Cash",
         "Memo": "Espresso & One Tart"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -9.144063,
-          38.710812
+          -9.149563,
+          38.710938
         ]
       }
     },

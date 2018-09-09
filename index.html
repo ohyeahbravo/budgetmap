@@ -26,6 +26,7 @@
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -54,7 +55,7 @@
     <script>
 
         const fixFloatingPoint = val => Number.parseFloat(val.toFixed(2));
-        var win_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        var win_width = (window.innerWidth > 0) ? window.innerWidth : screen.width; 
         var win_height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
 
         // get the geoJSON data
@@ -80,30 +81,114 @@
                 "data": geojsondata
             });
 
+            map.loadImage('https://dl.dropbox.com/s/fmpbffeb3g7nmh3/map-marker-blue.png?dl=0' 
+                , function(error, image) {
+                    if (error) throw error;
+                    map.addImage('blue', image);
+                });
+
+            map.loadImage('https://dl.dropbox.com/s/3ij3k1c1di92cqx/map-marker-yellow.png?dl=0' 
+                , function(error, image) {
+                    if (error) throw error;
+                    map.addImage('yellow', image);
+                });
+
+            map.loadImage('https://dl.dropbox.com/s/elw36p9xkartwru/map-marker-red.png?dl=0' 
+                , function(error, image) {
+                    if (error) throw error;
+                    map.addImage('red', image);
+                });
+
+            map.loadImage('https://dl.dropbox.com/s/t04h47jr204wdry/map-marker-green.png?dl=0' 
+                , function(error, image) {
+                    if (error) throw error;
+                    map.addImage('green', image);
+                });
+
+            map.loadImage('https://dl.dropbox.com/s/jynxgxg5lozl6z5/minibus.png?dl=0' 
+                , function(error, image) {
+                    if (error) throw error;
+                    map.addImage('transportation', image);
+                });
+
+            map.loadImage('https://dl.dropbox.com/s/s3iktii3icrpmwz/bed.png?dl=0' 
+                , function(error, image) {
+                    if (error) throw error;
+                    map.addImage('accommodation', image);
+                });
+
+            map.loadImage('https://dl.dropbox.com/s/li0gd84l7312jdb/cuttlery.png?dl=0' 
+                , function(error, image) {
+                    if (error) throw error;
+                    map.addImage('food', image);
+                });
+
+            map.loadImage('https://dl.dropbox.com/s/fyeoa7nkqxk31pb/arc-de-triomphe.png?dl=0' 
+                , function(error, image) {
+                    if (error) throw error;
+                    map.addImage('sightseeing', image);
+                });
+
             map.addLayer({
-                'id':'points',
-                'type': 'circle',
+                'id':'icons',
+                'type': 'symbol',
                 'source': 'lisbon18',
-                'paint': {
-                    'circle-stroke-width': 1,
-                    'circle-stroke-color': '#fff',
-                    // circles change size as zoom level
-                    'circle-radius': {
-                        'base': 1.7,
-                        'stops': [[5, 3], [22, 160]]
-                    },
-                    // circles are colored according to the categories
-                    'circle-color': [
+                'layout':{
+                    'icon-image': [
                         'match',
                         ['get', 'Category'],
-                        'Transportation', '#4F9CE0', // blue
-                        'Accommodation', '#64C4B6',  // green
-                        'Food', '#FAC150',   // yellow
-                        'Sightseeing', '#FA5D32',    // red
-                        /* other */ '#DFDCE3'    // grey
-                    ]
+                        'Transportation', 'transportation',
+                        'Accommodation', 'accommodation',
+                        'Food', 'food',
+                        'Sightseeing', 'sightseeing', 'food'],
+                    'icon-size': 0.31,
+                    'icon-offset': [0, -100],
+                    'icon-allow-overlap': true
                 }
             });
+
+            map.addLayer({
+                'id':'points',
+                'type': 'symbol',
+                'source': 'lisbon18',
+                'layout':{
+                    'icon-image': [
+                        'match',
+                        ['get', 'Category'],
+                        'Transportation', 'blue',
+                        'Accommodation', 'green',
+                        'Food', 'yellow',
+                        'Sightseeing', 'red', 'food'],
+                    'icon-size': 0.8,
+                    'icon-offset': [0, -32],
+                    'icon-allow-overlap': true
+                }
+            });
+
+            // map.addLayer({
+            //     'id':'points',
+            //     'type': 'circle',
+            //     'source': 'lisbon18',
+            //     'paint': {
+            //         'circle-stroke-width': 1,
+            //         'circle-stroke-color': '#fff',
+            //         // circles change size as zoom level
+            //         'circle-radius': {
+            //             'base': 1.7,
+            //             'stops': [[14, 5], [22, 100]]
+            //         },
+            //         // circles are colored according to the categories
+            //         'circle-color': [
+            //             'match',
+            //             ['get', 'Category'],
+            //             'Transportation', '#4F9CE0', // blue
+            //             'Accommodation', '#64C4B6',  // green
+            //             'Food', '#FAC150',   // yellow
+            //             'Sightseeing', '#FA5D32',    // red
+            //             /* other */ '#DFDCE3'    // grey
+            //         ]
+            //     }
+            // });
 
             map.addLayer({
                 'id':'currentPos',
@@ -169,18 +254,18 @@
                 'type': 'symbol',
                 'source': 'lisbon18',
                 'layout': {
-                    'text-field': ['get', 'Title'],
+                    'text-field': ['get', 'Category'],
                     'text-font': ["Open Sans Bold", "Arial Unicode MS Bold"],
                     'text-size': 19 ,
                     'text-letter-spacing': 0.05,
-                    'text-offset': [0, -2],
+                    'text-offset': [0, 2],
                     'visibility': 'none',
                     'text-max-width': Infinity
                 },
                 'paint': {
                     'text-color': '#202',
                     'text-halo-color': '#fff',
-                    'text-halo-width': 2
+                    'text-halo-width': 1
                 }
             });
 
@@ -194,7 +279,7 @@
                     'text-font': ["Open Sans Bold", "Arial Unicode MS Bold"],
                     'text-size': 17 ,
                     'text-letter-spacing': 0.05,
-                    'text-offset': [0, -4]
+                    'text-offset': [0, 4]
                 },
                 'paint': {
                     'text-color': [
@@ -207,7 +292,7 @@
                         /* other */ '#DFDCE3'    // grey
                     ],
                     'text-halo-color': '#fff',
-                    'text-halo-width': 2
+                    'text-halo-width': 1
                 }
             });
 
@@ -310,28 +395,6 @@
             closeButton: false
         });
 
-        // Base Marker
-        geojsondata.features.forEach(function(feature) {
-
-            new mapboxgl.Marker({offset: [0, -2]})
-                .setLngLat(feature.geometry.coordinates)
-                .addTo(map);
-        });
-
-        // Marker Icon
-        geojsondata.features.forEach(function(feature) {
-            var el = document.createElement('div');
-            el.className = 'marker';
-            el.style.backgroundImage = 'url(mapbox-icon.png)';
-            el.style.backgroundsize = 'cover';
-            el.style.width = '50px';
-            el.style.height = '50px';
-
-            new mapboxgl.Marker(el, {offset: [0, -2]})
-        .setLngLat(feature.geometry.coordinates)
-        .addTo(map);
-        });
-
         // add info box
         // https://www.mapbox.com/help/gl-dds-map-tutorial/#result-3
         map.on('mouseenter', 'points', function(e) {
@@ -429,7 +492,7 @@
             var zoomlevel = 14;
             if(step == 0) {
                 zoomcenter = [-0.5, 46.94];
-                zoomlevel = 4.1;
+                zoomlevel = 4.3;
             } else if(step == 1) {
                 zoomlevel = 7;         
             } else if (step == 2) {
@@ -438,7 +501,7 @@
                 zoomcenter = [-9.393793344497679, 38.79629789297362];
                 zoomlevel = 16;
             } else if (step != 6 && step != 16) {
-                zoomcenter = [-9.141, 38.7125];
+                zoomcenter = [-9.141, 38.7123];
             }
             map.flyTo({center: zoomcenter, zoom: zoomlevel});
 
