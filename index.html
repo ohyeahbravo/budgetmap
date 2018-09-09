@@ -29,16 +29,15 @@
 
 </head>
 <body>
-    <h1>
-        <i class="fa fa-plane" style="font: size 24px;"></i>
-        &nbsp Trip to Lisbon 2018
-    </h1>
-
     <div id="map"></div>
 
     <div class='chart-box'>
         <label id = 'amount'>€ 0</label>
-        <div id="barChart"></div>
+        <button class="button" style='background-color: #4F9CE0;'><i class="fas fa-shuttle-van"></i></button>
+        <button class="button" style='background-color: #64C4B6;'><i class="fas fa-bed"></i></button>
+        <button class="button" style='background-color: #FAC150;'><i class="fas fa-utensils"></i></i></button>
+        <button class="button" style='background-color: #FA5D32;'><i class="fas fa-archway"></i></button>
+        <div style='margin-top: 6px' id="barChart"></div>
     </div>
     
     <div class='map-overlay top'>
@@ -266,7 +265,7 @@
             text: textData,
             textfont: {
                 family: 'Caveat', 
-                size: 12,
+                size: 14,
                 color: ['#4F9CE0', '#64C4B6', '#FAC150', '#FA5D32']
             },
             type: 'bar',
@@ -283,8 +282,8 @@
         var chartData = [chartData1, chartData2]
 
         var layout= {
-            width: win_width * 0.15,
-            height: win_height * 0.5,
+            width: 190,
+            height: 310,
             margin: {
                 l: 0,
                 r: 0,
@@ -306,9 +305,17 @@
         };
         Plotly.newPlot('barChart', chartData, layout);
         
+        var popup = new mapboxgl.Popup({
+            closeOnClick: false,
+            closeButton: false
+        });
+
         // add info box
         // https://www.mapbox.com/help/gl-dds-map-tutorial/#result-3
-        map.on('click', function(e) {
+        map.on('mouseenter', 'points', function(e) {
+            
+            map.getCanvas().style.cursor = 'pointer';
+
             var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });    
             
             if (!features.length) {
@@ -323,11 +330,11 @@
             else if(feature.properties['Payment'] == "Cash")
                 payment = "fas fa-money-bill"
 
-            var popup = new mapboxgl.Popup()
+            popup
             .setLngLat(feature.geometry.coordinates)
             .setHTML(
                 '<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'>'
-                    + '<h5>' + feature.properties['Title'] + '</h5>'
+                    + '<h5 style=\'margin-top: 8px; margin-bottom: 0px\' >' + feature.properties['Title'] + '</h5>'
                     + '<h6>' 
                         + '<i class="fas fa-euro-sign" style="font: size 10px;"></i>' + '&nbsp&nbsp' + feature.properties['Amount'] + '&nbsp&nbsp&nbsp'
                         + '<i class="' + payment + '" style="font: size 12px; color: #C5C6F3;"></i>' + '</br>'
@@ -340,10 +347,9 @@
         
         });
 
-        // change cursor when you hover over the point
-        map.on('mousemove', function(e) {
-            var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });
-            map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+        map.on('mouseleave', 'points', function() {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
         });
 
         var slider = document.getElementById('slider');
@@ -372,7 +378,7 @@
                     }
                 });
             }
-            
+
             if(step > 0) {
                 document.getElementById('date').textContent = match.properties['Day'];
                 document.getElementById('time').textContent = match.properties['Time'];
