@@ -187,8 +187,12 @@ h6 {
 }
 
 /* Style the active class, and buttons on mouse-over */
-.active, .button:hover {
+.active, .button {
     opacity: 1;
+}
+
+.button:hover {
+    border: 2px solid grey;
 }
 
 .marker {
