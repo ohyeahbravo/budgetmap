@@ -310,6 +310,28 @@
             closeButton: false
         });
 
+        // Base Marker
+        geojsondata.features.forEach(function(feature) {
+
+            new mapboxgl.Marker({offset: [0, -2]})
+                .setLngLat(feature.geometry.coordinates)
+                .addTo(map);
+        });
+
+        // Marker Icon
+        geojsondata.features.forEach(function(feature) {
+            var el = document.createElement('div');
+            el.className = 'marker';
+            el.style.backgroundImage = 'url(mapbox-icon.png)';
+            el.style.backgroundsize = 'cover';
+            el.style.width = '50px';
+            el.style.height = '50px';
+
+            new mapboxgl.Marker(el, {offset: [0, -2]})
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map);
+        });
+
         // add info box
         // https://www.mapbox.com/help/gl-dds-map-tutorial/#result-3
         map.on('mouseenter', 'points', function(e) {
