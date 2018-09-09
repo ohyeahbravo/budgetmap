@@ -1,5 +1,6 @@
 body {
-    background-color: #39CCCC;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -10,13 +11,27 @@ h1 {
     margin-bottom: auto;
 }
 
+h2, h3 {
+    margin: 10px;
+    font-size: 1.2em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+p {
+    font-size: 0.85em;
+    margin: 10px;
+    text-align: left;
+}
+
 h5 {
     text-align: center;
     font-family: 'Titillium Web', sans-serif;
     font-size: 16px;
     color: #000000;
 }
-
 
 .memo {
     font-family: 'Caveat', cursive;
@@ -27,6 +42,13 @@ h5 {
     font-size: 14px;
 }
 
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
 h6 {
     margin-left: 5px;
     font-family: 'Raleway', sans-serif;
@@ -35,20 +57,49 @@ h6 {
     text-align: center;
 }
 
+.chart-box {
+    background-color:transparent;
+    font: bold 18px 'Titillium Web', sans-serif;
+    position: absolute;
+    width: 15%;
+    height: 30%;
+    top: 10px;
+    padding: 10px;
+    left: 10px;
+}
+
+.chart-box label {
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+}
+
 .map-overlay {
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    position: bottom;
-    align-self: center;
-    width: 1200px;
-    top: 0;
-    left: 0;
+    font: bold 16px 'Titillium Web', sans-serif;
+    position: absolute;
+    width: 25%;
+    top: 10px;
     padding: 10px;
 }
 
 .map-overlay {
+    background-color: rgba(256, 256, 256, 0.8);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    right: 10px;
+}
+
+.map-overlay .map-overlay-inner {
     background-color: transparent;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+.map-overlay label {
+    text-align: center;
+    display: block;
+    margin: 0 0 4px;
 }
 
 .map-overlay h2 {
@@ -64,10 +115,54 @@ h6 {
 }
 
 .map-overlay input {
-    background-color: transparent;
     display: inline-block;
     width: 100%;
     position: relative;
-    margin: 0;
-    cursor: ew-resize;
+    margin-bottom: 10px;
 }
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2px;
+    border-radius: 10px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 70%; 
+    background: #a239ca;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+#features {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background:transparent;
+    margin-right: 20px;
+    font-family: Arial, sans-serif;
+    overflow: auto;
+    border-radius: 3px;
+
+    top: 0;
+    height: 100px;
+    margin-top: 20px;
+    width: 250px;
+  }

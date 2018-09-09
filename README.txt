@@ -18,3 +18,9 @@ Blue: 4F9CE0
 green: 64C4B6
 yellow: FAC150
 red; FA5D32
+
+
++ Overview!
+
+showing the remaining route in a dashed line
+highlighting the current position on the slidebar
