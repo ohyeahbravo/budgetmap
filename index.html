@@ -21,14 +21,13 @@
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
     integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
     crossorigin=""></script>
+
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
-
+    
 </head>
+
 <body>
     <div id="map"></div>
 
@@ -49,19 +48,14 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="js/script.js"> </script>
-    <script src="https://d3js.org/d3.v5.js"></script>
-    
-    <script>
-
-        const fixFloatingPoint = val => Number.parseFloat(val.toFixed(2));
-        var win_width = (window.innerWidth > 0) ? window.innerWidth : screen.width; 
-        var win_height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+    <script type="text/javascript">
+        const fixFloatingPoint = value => Number.parseFloat(value.toFixed(2));
 
         // get the geoJSON data
         var geojsondata;
         $.getJSON("https://dl.dropbox.com/s/axgc96qdg5g6rvp/lisbon18.geojson?dl=0", function(data) { geojsondata = data; });
 
+        // initiate the map
         mapboxgl.accessToken = 'pk.eyJ1Ijoib2h5ZWFoYnJhdm8iLCJhIjoiY2psbXNqZmc0MTdhcDNycGIyenp6YTM5dSJ9.Zo0fukXCo-JW__NFIBQ7rw';
         var map = new mapboxgl.Map({
             container: 'map', // container id
@@ -70,65 +64,48 @@
             zoom: 4.1 // starting zoom
         });
 
-        // Add zoom and rotation controls to the map.
+        // add navigation controls to the map; zoom in & out
         var nav = new mapboxgl.NavigationControl();
         map.addControl(nav, 'bottom-right');
 
-        // Add Points
+        // Designing a map
         map.on('load', function() {
+
+            // Add geojson source to the map
             map.addSource("lisbon18", {
                 "type": "geojson",
                 "data": geojsondata
             });
 
-            map.loadImage('https://dl.dropbox.com/s/fmpbffeb3g7nmh3/map-marker-blue.png?dl=0' 
-                , function(error, image) {
-                    if (error) throw error;
-                    map.addImage('blue', image);
-                });
+            // Get images for markers on the map
+            map.loadImage('https://dl.dropbox.com/s/fmpbffeb3g7nmh3/map-marker-blue.png?dl=0', function(error, image){
+                if (error) throw error; map.addImage('blue', image);});
 
-            map.loadImage('https://dl.dropbox.com/s/3ij3k1c1di92cqx/map-marker-yellow.png?dl=0' 
-                , function(error, image) {
-                    if (error) throw error;
-                    map.addImage('yellow', image);
-                });
+            map.loadImage('https://dl.dropbox.com/s/3ij3k1c1di92cqx/map-marker-yellow.png?dl=0', function(error, image) {
+                if (error) throw error;map.addImage('yellow', image);});
 
-            map.loadImage('https://dl.dropbox.com/s/elw36p9xkartwru/map-marker-red.png?dl=0' 
-                , function(error, image) {
-                    if (error) throw error;
-                    map.addImage('red', image);
-                });
+            map.loadImage('https://dl.dropbox.com/s/elw36p9xkartwru/map-marker-red.png?dl=0', function(error, image) {
+                if (error) throw error;map.addImage('red', image);});
 
-            map.loadImage('https://dl.dropbox.com/s/t04h47jr204wdry/map-marker-green.png?dl=0' 
-                , function(error, image) {
-                    if (error) throw error;
-                    map.addImage('green', image);
-                });
+            map.loadImage('https://dl.dropbox.com/s/t04h47jr204wdry/map-marker-green.png?dl=0', function(error, image) {
+                if (error) throw error;map.addImage('green', image);});
 
-            map.loadImage('https://dl.dropbox.com/s/jynxgxg5lozl6z5/minibus.png?dl=0' 
-                , function(error, image) {
-                    if (error) throw error;
-                    map.addImage('transportation', image);
-                });
+            map.loadImage('https://dl.dropbox.com/s/jynxgxg5lozl6z5/minibus.png?dl=0', function(error, image) {
+                if (error) throw error;map.addImage('transportation', image);});
 
-            map.loadImage('https://dl.dropbox.com/s/s3iktii3icrpmwz/bed.png?dl=0' 
-                , function(error, image) {
-                    if (error) throw error;
-                    map.addImage('accommodation', image);
-                });
+            map.loadImage('https://dl.dropbox.com/s/s3iktii3icrpmwz/bed.png?dl=0', function(error, image) {
+                if (error) throw error;map.addImage('accommodation', image);});
 
-            map.loadImage('https://dl.dropbox.com/s/li0gd84l7312jdb/cuttlery.png?dl=0' 
-                , function(error, image) {
-                    if (error) throw error;
-                    map.addImage('food', image);
-                });
+            map.loadImage('https://dl.dropbox.com/s/li0gd84l7312jdb/cuttlery.png?dl=0', function(error, image) {
+                if (error) throw error;map.addImage('food', image);});
 
-            map.loadImage('https://dl.dropbox.com/s/fyeoa7nkqxk31pb/arc-de-triomphe.png?dl=0' 
-                , function(error, image) {
-                    if (error) throw error;
-                    map.addImage('sightseeing', image);
-                });
+            map.loadImage('https://dl.dropbox.com/s/fyeoa7nkqxk31pb/arc-de-triomphe.png?dl=0', function(error, image) {
+                if (error) throw error;map.addImage('sightseeing', image);});
 
+
+            /*** Add Layers ***/
+
+            // Add a layer for icons on map markers
             map.addLayer({
                 'id':'icons',
                 'type': 'symbol',
@@ -147,6 +124,7 @@
                 }
             });
 
+            // Add a layer for markers on the map
             map.addLayer({
                 'id':'points',
                 'type': 'symbol',
@@ -165,31 +143,7 @@
                 }
             });
 
-            // map.addLayer({
-            //     'id':'points',
-            //     'type': 'circle',
-            //     'source': 'lisbon18',
-            //     'paint': {
-            //         'circle-stroke-width': 1,
-            //         'circle-stroke-color': '#fff',
-            //         // circles change size as zoom level
-            //         'circle-radius': {
-            //             'base': 1.7,
-            //             'stops': [[14, 5], [22, 100]]
-            //         },
-            //         // circles are colored according to the categories
-            //         'circle-color': [
-            //             'match',
-            //             ['get', 'Category'],
-            //             'Transportation', '#4F9CE0', // blue
-            //             'Accommodation', '#64C4B6',  // green
-            //             'Food', '#FAC150',   // yellow
-            //             'Sightseeing', '#FA5D32',    // red
-            //             /* other */ '#DFDCE3'    // grey
-            //         ]
-            //     }
-            // });
-
+            // Add a layer for a current position when moving the slider
             map.addLayer({
                 'id':'currentPos',
                 'type': 'circle',
@@ -206,12 +160,9 @@
                 'filter': ["==", "index", 0]
             }, 'points');
             
-            // make an array for a route because empty array wouldn't work
-            var routeArray = [ [0, 0], [1, 1]];
-
+            // Add a layer for the passed route
+            var routeArray = [ [0, 0], [1, 1]]; // need an initial value
             var linestring = turf.lineString(routeArray);
-            var linestringYet = turf.lineString(routeArray);
-
             map.addLayer({
                 'id':'route',
                 'type':'line',
@@ -229,7 +180,8 @@
                 }
             }, 'points');
 
-            // left route
+            // Add a layer for the unpassed route
+            var linestringYet = turf.lineString(routeArray);
             map.addLayer({
                 'id':'routeYet',
                 'type':'line',
@@ -248,28 +200,28 @@
                 }
             }, 'points');
             
-            // title labels for markers
+            // add a layer for title labels
             map.addLayer({
                 'id': 'titles',
                 'type': 'symbol',
                 'source': 'lisbon18',
                 'layout': {
-                    'text-field': ['get', 'Category'],
+                    'text-field': ['get', 'Title'],
                     'text-font': ["Open Sans Bold", "Arial Unicode MS Bold"],
                     'text-size': 19 ,
                     'text-letter-spacing': 0.05,
                     'text-offset': [0, 2],
-                    'visibility': 'none',
                     'text-max-width': Infinity
                 },
                 'paint': {
                     'text-color': '#202',
                     'text-halo-color': '#fff',
                     'text-halo-width': 1
-                }
+                },
+                'filter': ["==", "index", 0]
             });
 
-            // amount labels for markers
+            // add a layer for amount labels
             map.addLayer({
                 'id': 'amounts',
                 'type': 'symbol',
@@ -296,11 +248,10 @@
                 }
             });
 
+        /*** Plotting ***/
+
+        // Initialize x values
         var xData = [];
-        var yData = [0,0,0,0];
-        var textData = [0, 0, 0, 0];
-        var total = [0,0,0,0];
-        
         geojsondata.features.forEach(function(feature) {
             var string = feature.properties['Category'];
             if(!xData.includes(string)) {
@@ -308,24 +259,25 @@
             }
         });
         
+        // Initialize y values
+        var yData = [0, 0, 0, 0];
+        var total = [0, 0, 0, 0];   // in the there is only a backchart
         geojsondata.features.forEach(function(feature) {
             var string = feature.properties['Category'];
             var amount = feature.properties['Amount'];
-            
             if(string == 'Transportation') {
                 total[0] = fixFloatingPoint(total[0] - amount);
-            }
-            if(string == 'Accommodation') {
+            } else if(string == 'Accommodation') {
                 total[1] = fixFloatingPoint(total[1] - amount);
-            }
-            if(string == 'Food') {
+            } else if(string == 'Food') {
                 total[2] = fixFloatingPoint(total[2] - amount);
-            }
-            if(string == 'Sightseeing') {
+            } else {
                 total[3] = fixFloatingPoint(total[3] - amount);
             }
         });
 
+        // The data for the actual chart
+        var textData = [0, 0, 0, 0];
         var chartData1 = {
             textposition: "outside",
             text: textData,
@@ -344,6 +296,7 @@
             }
         };
         
+        // The data for the backchart
         var backchart = [total[0], total[1], total[2], total[3]];
         var chartData2 = {
             textposition: "outside",
@@ -364,8 +317,7 @@
             }
         };
 
-        var chartData = [chartData1, chartData2]
-
+        // Layout Settings for the plot
         var layout= {
             width: 190,
             height: 310,
@@ -388,32 +340,33 @@
                 visible: false
             }
         };
+
+        // Plot the chart
+        var chartData = [chartData1, chartData2]
         Plotly.newPlot('barChart', chartData, layout);
         
+
+        /*** Add an Info Box when Mouse Hovered ***/
+
         var popup = new mapboxgl.Popup({
             closeOnClick: false,
             closeButton: false
         });
 
-        // add info box
-        // https://www.mapbox.com/help/gl-dds-map-tutorial/#result-3
         map.on('mouseenter', 'points', function(e) {
-            
             map.getCanvas().style.cursor = 'pointer';
 
             var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });    
-            
             if (!features.length) {
                 return;
             }
-            
             var feature = features[0];
             
-            var payment = "fas fa-strikethrough"
+            var payment = "fas fa-strikethrough"    // etc.
             if(feature.properties['Payment'] == "Card")
-                payment = "fas fa-credit-card"
+                payment = "fas fa-credit-card"  // card icon
             else if(feature.properties['Payment'] == "Cash")
-                payment = "fas fa-money-bill"
+                payment = "fas fa-money-bill"   // cash icon
 
             popup
             .setLngLat(feature.geometry.coordinates)
@@ -431,39 +384,29 @@
             ).addTo(map);
         
         });
-
+        
+        // popup disappears when hovering ends
         map.on('mouseleave', 'points', function() {
             map.getCanvas().style.cursor = '';
             popup.remove();
         });
 
+
+        /*** Add a Time Slider ***/
         var slider = document.getElementById('slider');
         
         slider.addEventListener('input', function(e) {
             
-            var step = parseInt(e.target.value);
+            var step = parseInt(e.target.value); // current position on the slider
+            
+            // a variable for a current feature
             var match;
-
-            // show the route progress
-            linestring.geometry.coordinates = [];  // initailize the route
             geojsondata.features.forEach(function(feature) {
-                if(feature.properties['index'] <= step) {
-                    linestring.geometry.coordinates.push(feature.geometry.coordinates);
-                }
-                if(feature.properties['index'] == step) {
+                if(feature.properties['index'] == step)
                     match = feature;
-                }
             });
 
-            linestringYet.geometry.coordinates = [];  // initailize the route
-            if(step > 0) {
-                geojsondata.features.forEach(function(feature) {
-                    if(feature.properties['index'] >= step) {
-                        linestringYet.geometry.coordinates.push(feature.geometry.coordinates);
-                    }
-                });
-            }
-
+            // update slider display
             if(step > 0) {
                 document.getElementById('date').textContent = match.properties['Day'];
                 document.getElementById('time').textContent = match.properties['Time'];
@@ -474,15 +417,25 @@
                 document.getElementById('time').textContent = 'Time';
             }
 
+            // update layers
+            map.setFilter('titles',  ["==", "index", step]);
+            map.setFilter('amounts',  ["==", "index", step]);
+            map.setFilter('currentPos', ["==", "index", step]);
+        
+            // update the routes
+            linestring.geometry.coordinates = [];  // initailize the route
+            linestringYet.geometry.coordinates = [];  
+            geojsondata.features.forEach(function(feature) {
+                if(feature.properties['index'] <= step) {   // visited
+                    linestring.geometry.coordinates.push(feature.geometry.coordinates);
+                } if(feature.properties['index'] >= step && step != 0) {
+                    linestringYet.geometry.coordinates.push(feature.geometry.coordinates);
+                }
+            });
             map.getSource('route').setData(linestring);
             map.getSource('routeYet').setData(linestringYet);
             map.setLayoutProperty('route', 'visibility', 'visible');
             map.setLayoutProperty('routeYet', 'visibility', 'visible');
-            
-            map.setLayoutProperty('titles', 'visibility', 'visible');
-            map.setFilter("currentPos", ["==", "index", step]);
-            map.setFilter('titles',  ["==", "index", step]);
-            map.setFilter('amounts',  ["==", "index", step]);
 
             // Update Zoom
             var zoomcenter;
@@ -533,7 +486,6 @@
                     }
                 }
             });
-
             document.getElementById('amount').textContent = '€ ' + fixFloatingPoint(textData[0] + textData[1] + textData[2] + textData[3]).toString();
             if(step == 0)
                 document.getElementById('amount').textContent = '€ ' + '0';
