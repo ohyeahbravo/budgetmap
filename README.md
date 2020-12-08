@@ -19,6 +19,10 @@ The project was developed using HTML, CSS and JavaScript. The Libraries that we 
 * Hiyeon Kim - 118654
 * Evangelia Eirini Koktsidou - 118884
 
+## Demo
+<iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+src="http://ohyeahbravo.github.io/budgetmap"></iframe>
+
 ## Credits
 Icons for markers where taken from [Flaticon](www.flaticon.com) and are all [licensed by](http://creativecommons.org/licenses/by/3.0/) Creative Commons BY 3.0 
 
