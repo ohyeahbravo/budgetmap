@@ -1,5 +1,8 @@
 # Budget Map
 
+[DEMO](http://ohyeahbravo.github.io/budgetmap)
+<br />
+
 This project is a visualization of all-day spendings during travel. Data were based on a recent travel of one of the team-members in Lisbon, Portugal.
 The main idea of the project is to visualize the places that have been visited during the travel showing their position at the map and the amount of money we spent there. The visualization contains:
  
@@ -18,10 +21,6 @@ The project was developed using HTML, CSS and JavaScript. The Libraries that we 
 ### Team members:
 * Hiyeon Kim - 118654
 * Evangelia Eirini Koktsidou - 118884
-
-## Demo
-<iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-src="http://ohyeahbravo.github.io/budgetmap"></iframe>
 
 ## Credits
 Icons for markers where taken from [Flaticon](www.flaticon.com) and are all [licensed by](http://creativecommons.org/licenses/by/3.0/) Creative Commons BY 3.0 
